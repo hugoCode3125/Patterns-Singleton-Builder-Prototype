@@ -2,7 +2,7 @@ package ma.enset.patternssingletonbuilderprototype.model;
 
 public class BankAccount {
     private Long accountId;
-    private  double balance;
+    private double balance;
     private String currency;
     private AccounType accounType;
     private  AccountStatus accountStatus;
@@ -72,12 +72,21 @@ public class BankAccount {
     public static class AccountBuilder {
         private  BankAccount bankAccount;
 
+        public AccountBuilder(BankAccount bankAccount) {
+            this.bankAccount = bankAccount;
+        }
+
         public  AccountBuilder accountId(Long id){
             bankAccount.setAccountId(id);
             return  this;
         }
         public  AccountBuilder cuurency(String cuurency){
             bankAccount.currency = cuurency;
+            return  this;
+        }
+
+        public AccountBuilder balance(double balance){
+            bankAccount.balance = balance;
             return  this;
         }
         public  AccountBuilder accounType(AccounType accounType){

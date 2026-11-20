@@ -1,6 +1,9 @@
 package ma.enset.patternssingletonbuilderprototype.repository;
 
+import ma.enset.patternssingletonbuilderprototype.model.AccounType;
+import ma.enset.patternssingletonbuilderprototype.model.AccountStatus;
 import ma.enset.patternssingletonbuilderprototype.model.BankAccount;
+import ma.enset.patternssingletonbuilderprototype.model.Director;
 
 import java.util.HashMap;
 import java.util.List;
@@ -53,8 +56,13 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     public  void populateData(){
         for (int i = 0; i < 10; i++) {
-
-
+            BankAccount bankAccount = Director.AccountBuilder()
+                    .balance(1000+Math.random()*5000)
+                    .accounType(Math.random()>0.5? AccounType.CURRENT_ACCOUNT: AccounType.SAVINGS_ACCOUNT)
+                    .accountStatus(Math.random()>0.5? AccountStatus.CREATED:AccountStatus.ACTIVATED)
+                    .cuurency(Math.random()>0.5?"MAD":"ECO")
+                    .build();
+            save(bankAccount);
         }
     }
 }
